@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <div>
             <div className='p-1 m-1'>
-                <ProductList />
+
 
 
 
