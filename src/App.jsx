@@ -5,12 +5,13 @@ import { RouterProvider } from "react-router-dom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
-import Header from "./component/Header";
-import Page1 from "./pages/home/nested/Page1"
-import Page2 from "./pages/home/nested/Page2"
+
 import RootLayout from "./component/RootLayout";
 import Ui from "./proj/Ui";
 import Product from "./pages/product/Product";
+import Beschreibung from "./pages/home/Beschreibung";
+import Menu from "./pages/home/Menu";
+import ContactDeRestro from "./pages/home/ContactDeRestro";
 
 
 export default function App() {
@@ -26,18 +27,18 @@ export default function App() {
 
         },
         {
-          path: 'product/:id',
-          element: <Product />
+          path: 'menu',
+          element: <Menu />
 
         },
         {
           path: 'about',
-          element: <About />,
+          element: <Beschreibung />,
 
         },
         {
           path: 'contact',
-          element: <Contact />
+          element: <ContactDeRestro />
         }],
     }
 
