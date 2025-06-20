@@ -12,8 +12,7 @@ export default function RootLayout() {
             <div className=''>
 
                 <Header />
-                <Outlet />
-                <Footer />
+
 
             </div>
 
