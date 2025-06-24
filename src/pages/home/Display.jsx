@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 export default function Display() {
@@ -9,6 +10,7 @@ export default function Display() {
 
 
             <h1 className='p-2 m-4 text-4xl font-serif text-gray-500 -mt-20 '>Le Catering</h1>
+
 
 
         </div>
