@@ -1,105 +1,89 @@
-import { Button, List, ListItem } from "@material-tailwind/react";
-import { useState } from "react"
-import { faker, Faker } from "@faker-js/faker";
+import React from 'react'
+import { useState } from 'react'
+import { Button, List, Card, ListItem, ListItemSuffix, Chip } from '@material-tailwind/react';
+import { faker } from '@faker-js/faker';
+
+
+
 
 export default function Home() {
-
-
-    const [color, setColor] = useState(true);
-    const handleChange = () => {
-        setColor(prev => !prev);
-
-    }
-
-
     const [count, setCount] = useState(0);
-    const handleCount = () => {
-        setCount((prev) => prev + 1);
+    const handleCount = () => (
+        setCount((prev) => prev + 1)
+    )
+    const handleCount2 = () => (
+        setCount((prev) => 0)
+    )
+
+    const [color, setColor] = useState(null);
+    const handleColor = () => {
+        setColor((prev) => !prev)
     }
-    const handleCount2 = () => {
-        setCount((prev) => prev - 1);
+
+    const [chemi, setChemi] = useState([])
+    const handleChemi = () => {
+        setChemi((prev) => [...prev, faker.science.chemicalElement()])
     }
 
-    const [numbers, setNumber] = useState([]);
 
-    const handleCount3 = () => {
-
-        setNumber((prev) => [...prev, count]);
+    const handleDelete = (symbol) => {
+        setChemi((prev) => prev.filter((pre) => pre.symbol != symbol))
     }
-    console.log(numbers);
 
 
-
-    const [fakeImage, setFakeImage] = useState([])
-    const handleImage = () => {
-        setFakeImage((prev) => [...prev, faker.image.personPortrait(), faker.person.fullName()])
-
-
-    }
-    const [fakeEmail, setFakeEmail] = useState([])
-    const handleEmail = () => {
-        setFakeEmail((prev) => [...prev, faker.internet.email()])
-    }
 
     return (
-        <div className="p-10 flex flex-col w-sm">
+        <div>
+            <div className='p-5 flex flex-col gap-3 w-sm'>
+                <h1 className={`${color ? 'border-blue-800' : 'border-green-800'} border-10 text-center`}>{count}</h1>
+                <Button onClick={handleCount}>Smash</Button>
+                <Button onClick={handleCount2}>Smash 0</Button>
+                <Button onClick={handleColor} className={`${color ? "bg-black" : "bg-red-800"}`}>Color Smash</Button>
 
-            <Button color="red" onClick={handleChange} className={`${color ? 'bg-red-800' : 'bg-black'}`} >Change</Button>
-
-
-
-            <div className='flex my-10 '>
-
-
-                <Button onClick={handleCount} className='p-5'>Increment</Button> <h1 className='p-5 mx-5'>{count}</h1>
-                <Button onClick={handleCount2} className='p-5'>Decrement</Button>
-
+                <Button onClick={handleChemi} className='mt-10'>Chemi Smash</Button>
 
             </div>
-            <div className="mb-15">
 
-                <Button onClick={handleCount3}>Count THe Value</Button>
 
-                <List className="">
-                    {numbers.map((num, index) => (
-                        <ListItem key={index}>{num}</ListItem>
+            <Card className="w-xl mt-2">
+                <List>
+                    {chemi.map((xiao, index) => (
+
+
+                        <ListItem key={index}>
+                            {xiao.name}
+
+                            <ListItemSuffix className='flex gap-2'>
+                                <Chip
+                                    value={xiao.symbol}
+
+                                    variant="ghost"
+                                    size="sm"
+                                    className="rounded-full"
+                                />
+                                <Chip
+
+                                    value={xiao.atomicNumber}
+                                    variant="ghost"
+                                    size="sm"
+                                    className="rounded-full"
+                                />
+                                <Button onClick={() => handleDelete(xiao.symbol)}>Del</Button>
+                            </ListItemSuffix>
+                        </ListItem>
+
                     ))}
                 </List>
-
-            </div>
-
-            <div className="flex">
-                <div>
-                    <Button onClick={handleImage}>Get Img</Button>
-                    <List>
-                        {fakeImage.map((img, index) => (
-                            <ListItem >
-
-                                <img key={index} src={img} alt="" />
-
-                            </ListItem>
-
-                        )
-
-                        )}
+            </Card>
 
 
-                    </List>
-                </div>
 
-                <div>
-                    <Button onClick={handleEmail}>Get Email</Button>
-                    <List>
-                        {fakeEmail.map((ema, index) => (
-                            <ListItem>
-                                <p key={index} >{ema}</p>
-                            </ListItem>
-                        ))}
 
-                    </List>
-                </div>
-            </div>
+
+
+
 
         </div>
     )
+
 }
