@@ -1,12 +1,8 @@
-
-
-import { createBrowserRouter, Outlet } from "react-router";
-import { RouterProvider } from "react-router-dom";
-import Home from "./pages/home/Home";
-
-
-import RootLayout from "./component/RootLayout";
-
+import { createBrowserRouter, RouterProvider } from "react-router"
+import Home from "./pages/home/Home"
+import RootLayOut from "./component/RootLayOut";
+import MealItems from "./pages/meal_items/MealItems";
+import Meal from "./pages/meal/Meal";
 
 
 export default function App() {
@@ -14,23 +10,29 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <RootLayout />,
+      element: <RootLayOut />,
       children: [
         {
           index: true,
           element: <Home />
-
         },
-      ],
-    }
 
+      ]
+    },
+    {
+      path: 'mealCategory/:category',
+      element: <MealItems />
+    },
+
+    {
+      path: 'meal/:id',
+      element: <Meal />
+    },
   ]);
 
-  return <div className="">
-
-    <RouterProvider router={router} />
-
-  </div>
 
 
+
+
+  return <RouterProvider router={router} />
 }
